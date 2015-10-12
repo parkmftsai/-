@@ -1,0 +1,43 @@
+#include<stdio.h>
+int fibnacci[1000000];
+int main()
+{
+    int n,k=0,head=0,number;
+    long long count;
+    printf("請輸入費氏數列編號:");
+    while(scanf("%d",&n)!=EOF)
+    {
+         count=0;
+         fibnacci[0]=n;
+         head=0;
+         while(head!=-1)
+        {
+            /*以下是pop，然後統計總數*/
+            if(fibnacci[head]==0||fibnacci[head]==1)
+           {
+               count++;
+               head--;
+           }
+
+            else
+            {
+                  number=0;
+                  k=fibnacci[head];
+                  /*以下是push*/
+                  if((k-1)>=0)
+                 {
+                     fibnacci[head+number]=k-1;
+                     number++;
+                 }
+                  if((k-2)>=0)
+                 {
+                     fibnacci[head+number]=k-2;
+                 }
+                     head+=number;
+            }
+        }
+        printf("第%d個費氏數列為:%lld\n",n,count);
+        printf("請輸入費氏數列編號:");
+    }
+return 0;
+}
